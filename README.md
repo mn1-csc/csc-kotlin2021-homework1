@@ -4,7 +4,7 @@
 
     установлена JDK (8 или больше)
     установлена Intellij Idea (Community или др.)
-    в Idea установлен Edu Tools плагин
+    в Idea установлен [Edu Tools](https://plugins.jetbrains.com/plugin/10081-edutools) плагин
 
 О задании
 
