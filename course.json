@@ -1,0 +1,224 @@
+{
+  "summary" : "Kotlin CSC\n",
+  "title" : "Kotlin 1",
+  "authors" : [
+    "User"
+  ],
+  "programming_language" : "kotlin",
+  "language" : "en",
+  "course_type" : "PyCharm",
+  "items" : [
+    {
+      "title" : "lesson1",
+      "task_list" : [
+        {
+          "name" : "task1",
+          "files" : {
+            "test/Tests.kt" : {
+              "name" : "test/Tests.kt",
+              "placeholders" : [ ],
+              "is_visible" : false,
+              "text" : "package com.h0tk3y.spbsu.kotlin.course.lesson1\n\nimport org.junit.Assert\nimport org.junit.Test\nimport java.io.ByteArrayOutputStream\nimport java.io.PrintStream\n\nclass Test {\n    companion object {\n        val newline = System.getProperty(\"line.separator\")\n    }\n\n    private fun testStdout(expected: String, fn: () -> Unit) {\n        val oldStdOut = System.out\n        try {\n            val stream = ByteArrayOutputStream()\n            stream.use {\n                PrintStream(stream, true, \"UTF-8\").use { System.setOut(it); fn(); }\n            }\n            val actual = stream.toByteArray().inputStream().bufferedReader().readText()\n            Assert.assertEquals(expected, actual)\n        } finally {\n            System.setOut(oldStdOut)\n        }\n    }\n\n    @Test\n    fun testGreet() {\n        listOf(\"abc\", \"\", \"=123\", \"John Doe\", \"One, two, three\").forEach {\n            testStdout(\"Hello, $it!$newline\") { greet(it) }\n        }\n    }\n\n    @Test\n    fun testSolutionNoUsername() {\n        testStdout(\"Hello, world!$newline\") { main(arrayOf()) }\n    }\n\n    @Test\n    fun testSolutionWithArgs() {\n        testStdout(\"Hello, one!${newline}Hello, two!${newline}Hello, three!$newline\") {\n            main(arrayOf(\"one\", \"two\", \"three\"))\n        }\n    }\n}"
+            },
+            "src/Task.kt" : {
+              "name" : "src/Task.kt",
+              "placeholders" : [
+                {
+                  "offset" : 239,
+                  "length" : 9,
+                  "possible_answer" : "TODO()",
+                  "placeholder_text" : "type here"
+                },
+                {
+                  "offset" : 494,
+                  "length" : 9,
+                  "possible_answer" : "TODO()",
+                  "placeholder_text" : "type here"
+                }
+              ],
+              "is_visible" : true,
+              "text" : "package com.h0tk3y.spbsu.kotlin.course.lesson1\n\nfun greet(name: String) {\n    /*\n     * Напишите тело функции, выводящее приветствие в виде:\n     * \"Hello, NAME!\" без кавычек, подставляя вместо \"NAME\"\n     * переданную строку.\n     */\n    type here\n}\n\nfun main(args: Array<String>) {\n    /*\n     * Вызовите функцию greet для каждого\n     * аргумента командной строки или же, если не\n     * передано ни одного аргумента, вызовите greet один\n     * раз, чтобы вывести \"Hello, world!\"\n     */\n    type here\n}"
+            }
+          },
+          "description_text" : "<html>\nЗадача 1. Main\n\n<p>Напишите тело функции <code>greet</code>, выводящее приветствие в виде:\n    <code>Hello, NAME!</code>, подставляя вместо <code>NAME</code>\n    переданную в качестве аргумента строку.\n<p>\n\n<p>Вызовите функцию <code>greet</code> для каждого\n    аргумента командной строки или же, если не\n    передано ни одного аргумента, вызовите <code>greet</code> один\n    раз, чтобы вывести <code>Hello, world!</code>\n</p>\n\n</html>",
+          "description_format" : "HTML",
+          "feedback_link" : {
+            "link_type" : "STEPIK"
+          },
+          "task_type" : "edu"
+        },
+        {
+          "name" : "task2a",
+          "files" : {
+            "src/Task.kt" : {
+              "name" : "src/Task.kt",
+              "placeholders" : [
+                {
+                  "offset" : 283,
+                  "length" : 9,
+                  "possible_answer" : "TODO()",
+                  "placeholder_text" : "type here"
+                }
+              ],
+              "is_visible" : true,
+              "text" : "package com.h0tk3y.spbsu.kotlin.course.lesson1\n\n/*\n * Реализуйте функцию factorial, вычисляющую значение факториала. Значение факториала нуля считайте едииницей.\n * Факториалом отрицательных чисел считайте -1. Целочисленное переполнение игнорируйте.\n */\nfun factorial(n: Int): Int = type here"
+            },
+            "test/Tests.kt" : {
+              "name" : "test/Tests.kt",
+              "placeholders" : [ ],
+              "is_visible" : false,
+              "text" : "package com.h0tk3y.spbsu.kotlin.course.lesson1\n\nimport org.junit.Assert\nimport org.junit.Test\n\nclass Test {\n    private fun doTest(expected: Int, n: Int) {\n        try {\n            val actual = factorial(n)\n            Assert.assertEquals(\"factorial($n) should be $expected, but was $actual\", expected, actual)\n        } catch (e: StackOverflowError) {\n            Assert.fail(\"Stack overflow in factorial($n).\")\n        }\n    }\n\n    @Test\n    fun testFactorial() {\n        Assert.assertEquals(-1, factorial(-123))\n        Assert.assertEquals(-1, factorial(-1))\n        Assert.assertEquals(1, factorial(0))\n        var res = 1\n        for (i in 1..10) {\n            res *= i\n            Assert.assertEquals(res, factorial(i))\n        }\n    }\n}"
+            }
+          },
+          "description_text" : "<html>\n<h3>Задача 2a. Факториал</h3>\n\n<p>Реализуйте функцию <code>factorial</code>, вычисляющую значение факториала.</p>\n<p>Значение факториала нуля считайте едииницей.</p>\n<p>Факториалом отрицательных чисел считайте -1. Целочисленное переполнение игнорируйте.</p>\n</html>",
+          "description_format" : "HTML",
+          "feedback_link" : {
+            "link_type" : "STEPIK"
+          },
+          "task_type" : "edu"
+        },
+        {
+          "name" : "task2b",
+          "files" : {
+            "src/Task.kt" : {
+              "name" : "src/Task.kt",
+              "placeholders" : [
+                {
+                  "offset" : 589,
+                  "length" : 9,
+                  "possible_answer" : "/* добавьте три параметра */",
+                  "placeholder_text" : "type here"
+                },
+                {
+                  "offset" : 607,
+                  "length" : 9,
+                  "possible_answer" : "TODO()",
+                  "placeholder_text" : "type here"
+                }
+              ],
+              "is_visible" : true,
+              "text" : "package com.h0tk3y.spbsu.kotlin.course.lesson1\n\n/*\n * Реализуйте функцию fibonacci, вычисляющую элемент последовательности Фибоначчи по номеру.\n * Нумерация элементов с единицы.\n * Функция должна иметь три целочисленных параметра:\n * 1. n – номер требуемого элемента последовательности. Для номеров, меньших единицы, возвращайте -1;\n * 2. first – значение первого элемента последовательности, имеет значение по умолчанию 1;\n * 3. second – значение второго элемента последовательности, использует first как значение по умолчанию\n * Целочисленное переполнение игнорируйте.\n */\nfun fibonacci(type here): Int = type here\n\n/*\n * Функцию должно быть можно вызывать следующими способами:\n * `fibonacci(42)`\n * `fibonacci(7, 1)`\n * `fibonacci(11, 0, 1)`\n * `fibonacci(7, first = 5)`\n * `fibonacci(42, first = 1, second = 1)`\n */"
+            },
+            "test/Tests.kt" : {
+              "name" : "test/Tests.kt",
+              "placeholders" : [ ],
+              "is_visible" : false,
+              "text" : "package com.h0tk3y.spbsu.kotlin.course.lesson1\n\nimport org.junit.Assert\nimport org.junit.Test\n\nclass Test {\n    private fun doTest(expected: Int, n: Int, first: Int? = null, second: Int? = null) {\n        val actual = when {\n            first == null -> fibonacci(n)\n            second == null -> fibonacci(n, first)\n            else -> fibonacci(n, first, second)\n        }\n        Assert.assertEquals(\n                \"fibonacci(${listOfNotNull(n, first, second).joinToString()}) should be $expected, but was $actual\",\n                expected,\n                actual\n        )\n    }\n\n    @Test\n    fun testFibonacci() {\n        doTest(-1, 0)\n        doTest(-1, 0, 1)\n        doTest(-1, 0, 1, 1)\n\n        doTest(-1, -1)\n        doTest(-1, -1, 1)\n        doTest(-1, -1, 1, 1)\n\n        doTest(1, 1)\n        doTest(5, 1, 5)\n        doTest(10, 1, 10, 20)\n\n        doTest(13, 7)\n        doTest(65, 7, 5)\n        doTest(210, 7, 10, 20)\n\n        doTest(46368, 24)\n        doTest(231840, 24, 5)\n        doTest(750250, 24, 10, 20)\n    }\n}"
+            }
+          },
+          "description_text" : "<html>\n<h3>Задача 2b. Число Фибоначчи</h3>\n\n<p>Реализуйте функцию fibonacci, вычисляющую элемент последовательности Фибоначчи по номеру.\n    Нумерация элементов с единицы.</p>\n<p>Функция должна иметь три целочисленных параметра:</p>\n<ol>\n    <li><code>n</code> – номер требуемого элемента последовательности. Для номеров, меньших единицы, возвращайте -1;</li>\n    <li><code>first</code> – значение первого элемента последовательности, имеет <a href=\"https://kotlinlang.org/docs/reference/functions.html#default-arguments\">значение по умолчанию</a> 1;</li>\n    <li><code>second</code> – значение второго элемента последовательности, использует <code>first</code> как значение по умолчанию</li>\n\n</ol>\n<p>Целочисленное переполнение игнорируйте.</p>\n\n<p>Функцию должно быть можно вызывать следующими способами:</p>\n<ul>\n    <li><code>fibonacci(42)</code></li>\n    <li><code>fibonacci(7, 1)</code></li>\n    <li><code>fibonacci(11, 0, 1)</code></li>\n    <li><code>fibonacci(7, first = 5)</code></li>\n    <li><code>fibonacci(42, first = 1, second = 1)</code></li>\n</ul>\n\n</html>",
+          "description_format" : "HTML",
+          "feedback_link" : {
+            "link_type" : "STEPIK"
+          },
+          "task_type" : "edu"
+        },
+        {
+          "name" : "task2c",
+          "files" : {
+            "src/Task.kt" : {
+              "name" : "src/Task.kt",
+              "placeholders" : [
+                {
+                  "offset" : 537,
+                  "length" : 9,
+                  "possible_answer" : "TODO()",
+                  "placeholder_text" : "type here"
+                }
+              ],
+              "is_visible" : true,
+              "text" : "package com.h0tk3y.spbsu.kotlin.course.lesson1\n\n/*\n * Реализуйте функцию fizzbuzz, принимающую целочисленный диапазон и выводящую на каждый элемент диапазона\n * по одной строке в консоль. Для чисел в диапазоне, кратных трём, выводите слово fizz, для кратных пяти –\n * слово buzz, а для кратных 15-и (то есть кратных и трём, и пяти) – слово fizzbuzz.\n * Для остальных чисел выводите их строковое представление.\n *\n * Пример вывода для диапазона 10..15: *//*\n  buzz\n  11\n  fizz\n  13\n  14\n  fizzbuzz\n */\nfun fizzbuzz(range: IntRange) {\n    type here\n}"
+            },
+            "test/Tests.kt" : {
+              "name" : "test/Tests.kt",
+              "placeholders" : [ ],
+              "is_visible" : false,
+              "text" : "package com.h0tk3y.spbsu.kotlin.course.lesson1\n\nimport org.junit.Assert\nimport org.junit.Test\nimport java.io.ByteArrayOutputStream\nimport java.io.PrintStream\n\nclass Test {\n    companion object {\n        val newline = System.getProperty(\"line.separator\")\n    }\n\n    private fun testStdout(expected: String, fn: () -> Unit) {\n        val oldStdOut = System.out\n        try {\n            val stream = ByteArrayOutputStream()\n            stream.use {\n                PrintStream(stream, true, \"UTF-8\").use { System.setOut(it); fn(); }\n            }\n            val actual = stream.toByteArray().inputStream().bufferedReader().readText()\n            Assert.assertEquals(expected, actual)\n        } finally {\n            System.setOut(oldStdOut)\n        }\n    }\n\n    @Test\n    fun testFizzBuzz() {\n        listOf(1..30, 10..200, -5..300).forEach { range ->\n            testStdout(range.joinToString(newline, \"\", newline, transform = {\n                when {\n                    it % 15 == 0 -> \"fizzbuzz\"\n                    it % 5 == 0 -> \"buzz\"\n                    it % 3 == 0 -> \"fizz\"\n                    else -> it.toString()\n                }\n            })) {\n                fizzbuzz(range)\n            }\n        }\n    }\n}"
+            }
+          },
+          "description_text" : "<html>\n<h3>Задача 2c. Fizzbuzz</h3>\n\n<p>Реализуйте функцию <code>fizzbuzz</code>, принимающую целочисленный диапазон и выводящую на каждый элемент диапазона\n    по одной строке в консоль. Для чисел в диапазоне, кратных трём, выводите слово <code>fizz</code>, для кратных пяти –\n    слово <code>buzz</code>, а для кратных 15-и (то есть кратных и трём, и пяти) – слово <code>fizzbuzz</code>.\n    Для остальных чисел выводите их строковое представление.</p>\n\n<p>Пример вывода для диапазона 10..15:</p>\n<pre>\nbuzz\n11\nfizz\n13\n14\nfizzbuzz\n</pre>\n</html>",
+          "description_format" : "HTML",
+          "feedback_link" : {
+            "link_type" : "STEPIK"
+          },
+          "task_type" : "edu"
+        },
+        {
+          "name" : "task3",
+          "files" : {
+            "src/Task.kt" : {
+              "name" : "src/Task.kt",
+              "placeholders" : [ ],
+              "is_visible" : true,
+              "text" : "package com.h0tk3y.spbsu.kotlin.course.lesson1\n\n/*\n * Реализуйте функцию intersectRanges, возвращающую диапазон, являющийся пересечением двух\n * данных целочисленных диапазонов. Если данные диапазоны не пересекаются, возвращайте null.\n *\n * Например, пересечением дипазонов `1..10` и `5..20` является `5..10`,\n * а диапазоны `0..0` и `1..1` не пересекаются.\n * \n * Для получения границ диапазонов используйте свойства `first` и `last`.\n */\nfun intersectRanges(rangeA: IntRange, rangeB: IntRange): IntRange? {\n    TODO()\n}\n\n/*\n * Реализуйте функцию `cut`, которая возвращает список, содержащий от нуля до двух непрерывных\n * диапазонов, которые получаются из диапазона `outerRange`, если из него \"вырезать\" диапазон `cutout`.\n * (на самом деле, конечно же, \"вырезать\" из диапазона можно только его пересечение с другим диапазоном,\n *  а остальную часть другого диапазона следует отбросить)\n * \n * Например, если из диапазона `0..10` вырезать `1..7`, получится два диапазона, `0..0` и `8..10`.\n * Если же из `0..10` вырезать `0..3`, то результатом будет только один диапазон `4..10`.\n */\nfun cut(outerRange: IntRange, cutout: IntRange): List<IntRange> {\n    val result = mutableListOf<IntRange>()\n    TODO(\n            \"Добавьте в result необходимые элементы с помощью .add(...), затем верните result; \" +\n                    \"или создайте список-результат другим способом\"\n    )\n}"
+            },
+            "test/Tests.kt" : {
+              "name" : "test/Tests.kt",
+              "placeholders" : [ ],
+              "is_visible" : false,
+              "text" : "import com.h0tk3y.spbsu.kotlin.course.lesson1.cut\nimport com.h0tk3y.spbsu.kotlin.course.lesson1.intersectRanges\nimport com.h0tk3y.spbsu.kotlin.course.lesson1.test.cut as referenceCut\nimport com.h0tk3y.spbsu.kotlin.course.lesson1.test.intersectRanges as referenceIntersect\nimport org.junit.Assert\nimport org.junit.Test\n\nclass Test {\n    @Test\n    fun testIntersect() {\n        fun doTest(rangeA: IntRange, rangeB: IntRange) {\n            val expected = referenceIntersect(rangeA, rangeB)\n            val actual = intersectRanges(rangeA, rangeB)\n            Assert.assertEquals(\n                    \"Intersection of $rangeA and $rangeB should be $expected, but was $actual.\",\n                    expected,\n                    actual\n            )\n        }\n\n        doTest(0..0, 1..1)\n        doTest(1..1, 0..0)\n        doTest(0..5, 1..5)\n        doTest(0..5, 0..4)\n        doTest(0..5, 5..10)\n        doTest(0..5, -10..0)\n        doTest(0..5, 3..10)\n        doTest(0..5, -5..3)\n    }\n\n    @Test\n    fun testCut() {\n        fun doTest(rangeA: IntRange, rangeB: IntRange) {\n            val expected = referenceCut(rangeA, rangeB)\n            val actual = cut(rangeA, rangeB)\n            Assert.assertEquals(\n                    \"cut($rangeA, $rangeB) should be $expected, but was $actual.\",\n                    expected,\n                    actual\n            )\n        }\n\n        doTest(0..0, 1..1)\n        doTest(1..1, 0..0)\n        doTest(0..5, 1..5)\n        doTest(0..5, 0..4)\n        doTest(0..5, 5..10)\n        doTest(0..5, -10..0)\n        doTest(0..5, 3..10)\n        doTest(0..5, -5..3)\n    }\n\n\n}"
+            },
+            "test/ReferenceImpl.kt" : {
+              "name" : "test/ReferenceImpl.kt",
+              "placeholders" : [ ],
+              "is_visible" : true,
+              "text" : "package com.h0tk3y.spbsu.kotlin.course.lesson1.test\n\nfun intersectRanges(rangeA: IntRange, rangeB: IntRange): IntRange? {\n    val left = if (rangeA.first <= rangeB.first) rangeA else rangeB\n    val right = if (left === rangeA) rangeB else rangeA\n\n    if (left.last < right.first)\n        return null\n\n    if (left.last > right.last)\n        return right\n\n    return right.first..left.last\n}\n\nfun cut(outerRange: IntRange, cutout: IntRange): List<IntRange> {\n    val intersection = intersectRanges(outerRange, cutout)\n    return when {\n        intersection == null -> listOf(outerRange)\n        intersection == outerRange -> emptyList()\n        else -> listOfNotNull(\n            outerRange.first until intersection.first,\n            (intersection.last + 1)..outerRange.last\n        ).filter { !it.isEmpty() }\n    }\n}"
+            }
+          },
+          "description_text" : "<html>\n<h3>Задача 3. Целочисленные диапазоны</h3>\n\n<p>Это задание на работу с целочисленными диапазонами – <a href=\"https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-int-range/index.html\"><code>IntRange</code></a>.</p>\n\n<p>Реализуйте функцию <code>intersectRanges</code>, возвращающую диапазон, являющийся пересечением двух\n    данных целочисленных диапазонов. Если данные диапазоны не пересекаются, возвращайте <code>null</code>.</p>\n\n<p>Например, пересечением дипазонов <code>1..10</code> и <code>5..20</code> является <code>5..10</code>,\n    а диапазоны <code>0..0</code> и <code>1..1</code> не пересекаются.</p>\n\n<p>Для получения границ диапазонов используйте свойства <a href=\"https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-int-progression/first.html\"><code>first</code></a> и <a href=\"https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-int-progression/last.html\"><code>last</code></a>.</p>\n\n<p>Затем реализуйте функцию <code>cut</code>, которая возвращает список, содержащий от нуля до двух непрерывных\n    диапазонов, которые получаются из диапазона <code>outerRange</code>, если из него \"вырезать\" <code>cutout</code>\n    (на самом деле, конечно же, \"вырезать\" из диапазона можно только его пересечение с другим диапазоном,\n    а остальную часть другого диапазона следует отбросить).</p>\n\n<p>Например, если из диапазона <code>0..10</code> вырезать <code>1..7</code>, получится два диапазона, <code>0..0</code>\n    и <code>8..10</code>. Если же из <code>0..10</code> вырезать <code>0..3</code>,\n    то результатом будет только один диапазон <code>4..10</code>.</p>\n</html>",
+          "description_format" : "HTML",
+          "feedback_link" : {
+            "link_type" : "STEPIK"
+          },
+          "task_type" : "edu"
+        },
+        {
+          "name" : "task4",
+          "files" : {
+            "test/Tests.kt" : {
+              "name" : "test/Tests.kt",
+              "placeholders" : [ ],
+              "is_visible" : false,
+              "text" : "package com.h0tk3y.spbsu.kotlin.course.lesson1\n\nimport main\nimport org.junit.Assert\nimport org.junit.Test\nimport java.io.ByteArrayOutputStream\nimport java.io.PrintStream\n\nclass Test {\n    companion object {\n        val newline = System.getProperty(\"line.separator\")\n    }\n\n    private fun testStdout(expected: String, fn: () -> Unit) {\n        val oldStdOut = System.out\n        try {\n            val stream = ByteArrayOutputStream()\n            stream.use {\n                PrintStream(stream, true, \"UTF-8\").use { System.setOut(it); fn(); }\n            }\n            val actual = stream.toByteArray().inputStream().bufferedReader().readText()\n            Assert.assertEquals(expected, actual)\n        } finally {\n            System.setOut(oldStdOut)\n        }\n    }\n\n    @Test\n    fun testSolutionNoUsername() {\n        testStdout(\"ещё никогда Штирлиц не был так близок к провалу$newline\") { main() }\n    }\n}"
+            },
+            "src/Task.kt" : {
+              "name" : "src/Task.kt",
+              "placeholders" : [
+                {
+                  "offset" : 20,
+                  "length" : 9,
+                  "possible_answer" : "\"\"",
+                  "placeholder_text" : "type here"
+                },
+                {
+                  "offset" : 50,
+                  "length" : 9,
+                  "possible_answer" : "\"\"",
+                  "placeholder_text" : "type here"
+                }
+              ],
+              "is_visible" : true,
+              "text" : "const val string1 = type here\nconst val string2 = type here\n\nfun foo(\n        head: String = \"никогда\",\n        phrase: String = \" не говори\",\n        tail: String = \" никогда\"\n    ) = if (phrase.isNotEmpty()) {\n        \"$head$phrase$tail\"\n    }\n    else {\n        \"\"\n    }\n\nfun main() {\n    println(\n            foo(\n                    head = foo(\"\", phrase = string2),\n                    tail = string1,\n                    phrase = \" Штирлиц \"\n            )\n    )\n}"
+            }
+          },
+          "description_text" : "<html>\n<h3>Задача 4. Параметры</h3>\n\n<p>Определите значение переменных <code>word1</code> и <code>word2</code>,\n   при которых функция <code>main()</code> выводит строку\n   <code>ещё никогда Штирлиц не был так близок к провалу</code>\n   </p>\n</html>",
+          "description_format" : "HTML",
+          "feedback_link" : {
+            "link_type" : "STEPIK"
+          },
+          "task_type" : "edu"
+        }
+      ],
+      "type" : "lesson"
+    }
+  ],
+  "additional_files" : [
+    {
+      "name" : "build.gradle",
+      "placeholders" : [ ],
+      "is_visible" : true,
+      "text" : "buildscript {\n    ext.kotlin_version = '1.4.0'\n\n    repositories {\n        mavenCentral()\n        \n    }\n\n    dependencies {\n        classpath \"org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version\"\n    }\n}\n\ndef printOutput(def output) {\n    return tasks.create(\"printOutput\") {\n        for (line in output.toString().readLines()) {\n            println \"#educational_plugin\" + line\n        }\n    }\n}\n\nsubprojects {\n    apply plugin: 'application'\n    apply plugin: 'java'\n    apply plugin: 'kotlin'\n\n    sourceCompatibility = 1.8\n\n    repositories {\n        mavenCentral()\n        \n    }\n\n    dependencies {\n        compile \"org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version\"\n        testCompile group: 'junit', name: 'junit', version: '4.12'\n    }\n\n    compileKotlin.destinationDir = compileJava.destinationDir\n\n    compileKotlin {\n        kotlinOptions.jvmTarget = \"1.8\"\n    }\n    compileTestKotlin {\n        kotlinOptions.jvmTarget = \"1.8\"\n    }\n\n    sourceSets {\n        main {\n            kotlin.srcDir 'src'\n            java.srcDir 'src'\n        }\n        test {\n            kotlin.srcDir 'test'\n            java.srcDir 'test'\n        }\n    }\n\n    mainClassName = project.hasProperty(\"mainClass\") ? project.getProperty(\"mainClass\") : \"\"\n    test {\n        outputs.upToDateWhen { false }\n        afterTest { TestDescriptor test, TestResult result ->\n            if (result.resultType == TestResult.ResultType.FAILURE) {\n                def message = result.exception?.message ?: \"Wrong answer\"\n                def lines = message.readLines()\n                println \"#educational_plugin FAILED + \" + lines[0]\n                lines.subList(1, lines.size()).forEach { line ->\n                  println \"#educational_plugin\" + line\n                }\n                // we need this to separate output of different tests\n                println()\n            }\n        }\n    }\n\n    def runOutput = new ByteArrayOutputStream()\n    tasks.run.setStandardOutput(runOutput)\n    tasks.run.doLast { printOutput(runOutput) }\n}\n\nproject(':util') {\n    dependencies {\n        compile group: 'junit', name: 'junit', version: '4.12'\n    }\n}\n\nconfigure(subprojects.findAll {it.name != 'util'}) {\n  dependencies {\n    compile project(':util').sourceSets.main.output\n    testCompile project(':util').sourceSets.test.output\n  }\n}\n"
+    }
+  ],
+  "version" : 11
+}
